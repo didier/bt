@@ -1,0 +1,35 @@
+{
+  "name": "miit",
+  "version": "1.0.0",
+  "description": "Modern Dating",
+  "main": "index.js",
+  "scripts": {
+    "test": "nodemon index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/didiercatz/bt.git"
+  },
+  "keywords": [
+    "date",
+    "dating",
+    "js",
+    "html",
+    "css",
+    "mongodb",
+    "progressive",
+    "enhancement"
+  ],
+  "author": "Didier Catz",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/didiercatz/bt/issues"
+  },
+  "homepage": "https://github.com/didiercatz/bt#readme",
+  "devDependencies": {
+    "nodemon": "^2.0.3"
+  },
+  "dependencies": {
+    "express": "^4.17.1"
+  }
+}
