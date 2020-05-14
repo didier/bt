@@ -1,27 +1,35 @@
+/**
+ * NOTE: I intend on using JSDoc to document my code and reference it later.
+ * @author Didier Catz <info@didiercatz.com>
+ */
+
 // Packages
 const express = require('express')
 const app = express()
 
-// Use node's process port or fall back to port 3000
+/**
+ * Defines the port on which the server is hosted. 
+ * Default is `process.env.PORT`. Otherwise, it falls back to port 3000.
+ * @constant
+ */
 const port = process.env.PORT || 3000
 
-// Use static as middleware
+// Statically serve files in the `public` folder.
 app.use(express.static('public'))
+app.set('view engine', 'ejs');
 
-// Route static pages
+/** Defines the routes that will be served up by the server. */
 const routes = {
-  '/': 'index.html',
-  '/about': 'about.html',
-  '/contact': 'contact.html',
-  '/sound': 'assets/sound.mp3',
-  '/image': 'assets/image.png',
-  '*': '404.html'
+  '/': 'index.ejs',
+  '/about': 'about.ejs',
+  '/contact': 'contact.ejs',
+  '*': '404.ejs',
 }
 
 // Loop over and destructure the routes object, keepin' it DRY
 for (let [route, source] of Object.entries(routes)) {
   app.get(route, (req, res) => {
-    res.sendFile(`${__dirname}/public/${source}`)
+    res.render(source)
   })
 }
 

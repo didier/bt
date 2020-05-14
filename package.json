@@ -4,7 +4,9 @@
   "description": "Modern Dating",
   "main": "index.js",
   "scripts": {
-    "test": "nodemon index.js"
+    "test": "nodemon index.js",
+    "dev": "nodemon index.js --watch views",
+    "lint": "ejslint views"
   },
   "repository": {
     "type": "git",
@@ -27,9 +29,11 @@
   },
   "homepage": "https://github.com/didiercatz/bt#readme",
   "devDependencies": {
+    "ejs-lint": "^1.1.0",
     "nodemon": "^2.0.3"
   },
   "dependencies": {
+    "ejs": "^3.1.2",
     "express": "^4.17.1"
   }
 }
