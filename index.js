@@ -9,21 +9,18 @@ const port = process.env.PORT || 3000
 app.use(express.static('public'))
 
 // Route static pages
-app.get('/', (req, res) => {
-  res.sendFile(`${__dirname}/public/index.html`)
-})
+const routes = {
+  '/': 'index',
+  '/about': 'about',
+  '/contact': 'contact',
+  '*': '404'
+}
 
-app.get('/about', (req, res) => {
-  res.sendFile(`${__dirname}/public/about.html`)
-})
-
-app.get('/contact', (req, res) => {
-  res.sendFile(`${__dirname}/public/contact.html`)
-})
-
-app.get('*', (req, res) => {
-  res.sendFile(`${__dirname}/public/404.html`)
-})
+for (let [route, source] of Object.entries(routes)) {
+  app.get(route, (req, res) => {
+    res.sendFile(`${__dirname}/public/${source}.html`)
+  })
+}
 
 // Application running on port...
 app.listen(port, () => console.log(`App is running on http://localhost:${port}`))
