@@ -10,16 +10,18 @@ app.use(express.static('public'))
 
 // Route static pages
 const routes = {
-  '/': 'index',
-  '/about': 'about',
-  '/contact': 'contact',
-  '*': '404'
+  '/': 'index.html',
+  '/about': 'about.html',
+  '/contact': 'contact.html',
+  '/sound': 'assets/sound.mp3',
+  '/image': 'assets/image.png',
+  '*': '404.html'
 }
 
 // Loop over and destructure the routes object, keepin' it DRY
 for (let [route, source] of Object.entries(routes)) {
   app.get(route, (req, res) => {
-    res.sendFile(`${__dirname}/public/${source}.html`)
+    res.sendFile(`${__dirname}/public/${source}`)
   })
 }
 
