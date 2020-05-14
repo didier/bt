@@ -16,6 +16,7 @@ const routes = {
   '*': '404'
 }
 
+// Loop over and destructure the routes object, keepin' it DRY
 for (let [route, source] of Object.entries(routes)) {
   app.get(route, (req, res) => {
     res.sendFile(`${__dirname}/public/${source}.html`)
