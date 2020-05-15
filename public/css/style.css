@@ -1,32 +1,95 @@
 @import url("https://rsms.me/inter/inter.css");
+:root {
+  --font: "Inter";
+  --mint-100: #B2F5EA;
+  --mint-200: #81E6D9;
+  --mint-300: #4FD1C5;
+  --gray-100: #F7FAFC;
+  --gray-200: #EDF2F7;
+  --gray-300: #E2E8F0;
+  --gray-400: #CBD5E0;
+  --gray-500: #A0AEC0;
+  --gray-600: #718096;
+  --gray-700: #4A5568;
+  --gray-800: #2D3748;
+  --gray-900: #1A202C;
+  --black: var(--gray-900);
+}
+
+*,
+*:before,
+*:after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+html,
+body {
+  font-family: var(--font), -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+  font-size: 16px;
+  line-height: 1.5em;
+}
+
 @supports (font-variation-settings: normal) {
   html {
     --font: "Inter var";
   }
 }
-:root {
-  --font: "Inter";
+h1 {
+  font-weight: 600;
+  font-size: 68px;
+  line-height: 1.25em;
+  letter-spacing: -0.035em;
 }
 
-header,
-main,
-footer {
-  max-width: 1280px;
-  margin: 0 auto;
+h2 {
+  font-weight: 600;
+  font-size: 50px;
+  line-height: 1.25em;
+  letter-spacing: -0.04em;
 }
 
-header {
-  margin-top: 2rem;
-  margin-bottom: 2rem;
+h3 {
+  font-weight: 600;
+  font-size: 38px;
+  line-height: 1.25em;
+  letter-spacing: -0.055em;
+}
+
+h4 {
+  font-weight: 500;
+  font-size: 28px;
+  line-height: 1.25em;
+  letter-spacing: -0.055em;
+}
+
+h5 {
+  font-weight: 500;
+  font-size: 20px;
+  line-height: 1.25em;
+  letter-spacing: -0.035em;
+}
+
+p {
+  max-width: 66ch;
 }
 
 nav ul {
   list-style: none;
   display: flex;
 }
-
 nav ul li:not(:last-child) {
   margin-right: 2em;
+}
+
+.container, .container-lg {
+  margin: 0 auto;
+}
+.container-lg {
+  max-width: 1280px;
 }
 
 /*# sourceMappingURL=style.css.map */

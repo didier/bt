@@ -5,9 +5,10 @@
   "main": "index.js",
   "scripts": {
     "server": "nodemon index.js",
-    "dev": "NODE_ENV=development run-p server sass sync",
+    "get-components": "node scripts/get-components.js",
+    "dev": "NODE_ENV=development run-s get-components server sass sync",
     "sync": "browser-sync start --proxy 'localhost:3000' --files 'src/**/**/*'",
-    "sass": "sass --watch src/styles/style.scss:public/css/style.css"
+    "sass": "sass --watch src/styles/:public/css/"
   },
   "repository": {
     "type": "git",
@@ -41,6 +42,7 @@
     "express": "^4.17.1",
     "express-compile-sass": "^4.0.0",
     "express-handlebars": "^4.0.4",
+    "glob": "^7.1.6",
     "handlebars": "^4.7.6",
     "node-sass": "^4.14.1",
     "stylelint-8-point-grid": "^0.2.6",

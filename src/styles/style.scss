@@ -1,34 +1,7 @@
-@import url('https://rsms.me/inter/inter.css');
+@import 'base/variables';
+@import 'base/base';
+@import 'base/type';
 
-@supports (font-variation-settings: normal) {
-  html {
-    --font: 'Inter var';
-  }
-}
-
-:root {
-  --font: 'Inter';
-}
-
-
-
-header,
-main,
-footer {
-  max-width: 1280px;
-  margin: 0 auto;
-}
-
-header {
-  margin-top: 2rem;
-  margin-bottom: 2rem;
-}
-
-nav ul {
-  list-style: none;
-  display: flex;
-}
-
-nav ul li:not(:last-child) {
-  margin-right: 2em;
-}
+// Components (automatically generated -- see `scripts/get-components.js`)
+@import 'base/components';
+@import 'base/layout';

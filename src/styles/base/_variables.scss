@@ -1,0 +1,32 @@
+
+:root {
+  --font: 'Inter';
+
+  // Main colors
+  --mint-100: #B2F5EA;
+  --mint-200: #81E6D9;
+  --mint-300: #4FD1C5;
+
+  // Grays
+  --gray-100: #F7FAFC;
+  --gray-200: #EDF2F7;
+  --gray-300: #E2E8F0;
+  --gray-400: #CBD5E0;
+  --gray-500: #A0AEC0;
+  --gray-600: #718096;
+  --gray-700: #4A5568;
+  --gray-800: #2D3748;
+  --gray-900: #1A202C;
+
+  // Overrides
+  --black: var(--gray-900);
+}
+
+$bp-mobile-sm: 320px;
+$bp-mobile-md: 375px;
+$bp-mobile-lg: 414px;
+$bp-tablet-sm: 562px;
+$bp-tablet-md: 768px;
+$bp-desktop-sm: 1120px;
+$bp-desktop-md: 1280px;
+$bp-desktop-lg: 1538px;

@@ -1,16 +1,13 @@
 /**
  * NOTE: I intend on using JSDoc to document my code and reference it later.
  * @author Didier Catz <info@didiercatz.com>
+ * @description Serves compiled template files to localhost.
  */
 
 // Packages
 const express = require('express')
 const app = express()
 const hbs = require('express-handlebars')
-// const // livereload = require("livereload")
-// const // connectLivereload = require("connect-livereload")
-// const compileSass = require('express-compile-sass')
-// const Bundler = require('parcel-bundler')
 
 /**
  * Defines the port on which the server is hosted.
@@ -19,27 +16,20 @@ const hbs = require('express-handlebars')
  */
 const port = process.env.PORT || 3000;
 
-/** The files that will be watched by Parcel */
-// const files = ['src/styles/**/*']
-
-/** The options for Parcel */
-// const options = {
-// hmr: true,
-// outDir: 'public'
-// }
-
-// const parcel = new Bundler(files, options)
-
 app
-  // Register `hbs.engine` with the Express app.
+  // Serve static files in `/public`
   .use(express.static('public'))
+
+  // Register `hbs.engine` with the Express app.
   .engine('hbs', hbs({ extname: 'hbs' }))
+
+  // Set the Express view engine to handlebars
   .set('view engine', 'hbs')
+
+  // Set the Views directory to `src/views`
   .set('views', 'src/views')
-// .use(parcel.middleware())
 
-
-/** Defines the routes that will be served up by the server. */
+/** Defines the routes that will be served up by the server.*/
 const routes = {
   '/': 'index.hbs',
   '*': '404.hbs',

@@ -1,0 +1,10 @@
+nav.a-nav {
+  ul {
+    list-style: none;
+    display: flex;
+
+    li:not(:last-child) {
+      margin-right: 2em;
+    }
+  }
+}
