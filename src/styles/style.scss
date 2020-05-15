@@ -1,0 +1,92 @@
+@import url('https://rsms.me/inter/inter.css');
+
+@supports (font-variation-settings: normal) {
+  html {
+    --font: 'Inter var';
+  }
+}
+
+:root {
+  --font: 'Inter';
+}
+
+*,
+*:before,
+*:after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+html,
+body {
+  font-family: var(--font), -apple-system, BlinkMacSystemFont, 'Segoe UI',
+    Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  font-size: 16px;
+  line-height: 1.5em;
+  // background: red;
+}
+
+/* Typography */
+
+h1 {
+  font-weight: 600;
+  font-size: 68px;
+  line-height: 1.25em;
+  letter-spacing: -0.035em;
+}
+
+h2 {
+  font-weight: 600;
+  font-size: 50px;
+  line-height: 1.25em;
+  letter-spacing: -0.04em;
+}
+
+h3 {
+  font-weight: 600;
+  font-size: 38px;
+  line-height: 1.25em;
+  letter-spacing: -0.055em;
+}
+
+h4 {
+  font-weight: 500;
+  font-size: 28px;
+  line-height: 1.25em;
+  letter-spacing: -0.055em;
+}
+
+h5 {
+  font-weight: 500;
+  font-size: 20px;
+  line-height: 1.25em;
+  letter-spacing: -0.035em;
+}
+
+p {
+  max-width: 66ch;
+}
+
+header,
+main,
+footer {
+  max-width: 1280px;
+  margin: 0 auto;
+}
+
+header {
+  margin-top: 2rem;
+  margin-bottom: 2rem;
+}
+
+nav ul {
+  list-style: none;
+  display: flex;
+}
+
+nav ul li:not(:last-child) {
+  margin-right: 2em;
+}
