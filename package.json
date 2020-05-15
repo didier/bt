@@ -36,10 +36,15 @@
     "sass": "^1.26.5"
   },
   "dependencies": {
+    "eslint": "^7.0.0",
+    "eslint-plugin-import": "^2.20.2",
     "express": "^4.17.1",
     "express-compile-sass": "^4.0.0",
     "express-handlebars": "^4.0.4",
     "handlebars": "^4.7.6",
-    "node-sass": "^4.14.1"
+    "node-sass": "^4.14.1",
+    "stylelint-8-point-grid": "^0.2.6",
+    "stylelint-config-recommended": "^3.0.0",
+    "stylelint-config-standard": "^20.0.0"
   }
 }

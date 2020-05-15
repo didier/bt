@@ -43,7 +43,7 @@ app
 const routes = {
   '/': 'index.hbs',
   '*': '404.hbs',
-}
+};
 
 // Loop over and destructure the routes object, keepin' it DRY
 for (let [route, source] of Object.entries(routes)) {
