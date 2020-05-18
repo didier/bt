@@ -44,12 +44,28 @@ h1 {
   line-height: 1.25em;
   letter-spacing: -0.035em;
 }
+@media screen and (max-width: 768px) {
+  h1 {
+    font-weight: 600;
+    font-size: 38px;
+    line-height: 1.25em;
+    letter-spacing: -0.055em;
+  }
+}
 
 h2 {
   font-weight: 600;
   font-size: 50px;
   line-height: 1.25em;
   letter-spacing: -0.04em;
+}
+@media screen and (max-width: 768px) {
+  h2 {
+    font-weight: 500;
+    font-size: 28px;
+    line-height: 1.25em;
+    letter-spacing: -0.055em;
+  }
 }
 
 h3 {
@@ -58,6 +74,14 @@ h3 {
   line-height: 1.25em;
   letter-spacing: -0.055em;
 }
+@media screen and (max-width: 768px) {
+  h3 {
+    font-weight: 500;
+    font-size: 20px;
+    line-height: 1.25em;
+    letter-spacing: -0.035em;
+  }
+}
 
 h4 {
   font-weight: 500;
@@ -65,31 +89,75 @@ h4 {
   line-height: 1.25em;
   letter-spacing: -0.055em;
 }
-
 h5 {
   font-weight: 500;
   font-size: 20px;
   line-height: 1.25em;
   letter-spacing: -0.035em;
 }
-
 p {
   max-width: 66ch;
 }
 
-nav ul {
-  list-style: none;
-  display: flex;
-}
-nav ul li:not(:last-child) {
-  margin-right: 2em;
-}
-
 .container, .container-lg {
   margin: 0 auto;
+  padding: 0 24px;
+}
+@media screen and (max-width: 768px) {
+  .container, .container-lg {
+    padding: 0 16px;
+  }
 }
 .container-lg {
   max-width: 1280px;
+}
+
+nav.a-nav ul {
+  list-style: none;
+  display: flex;
+}
+nav.a-nav ul li:not(:last-child) {
+  margin-right: 2em;
+}
+
+.m-header {
+  margin-top: 2rem;
+  margin-bottom: 4rem;
+}
+
+.m-match-item {
+  display: grid;
+  grid-template-columns: 5rem 1fr 5rem;
+  margin: 1rem 0;
+  box-shadow: 0 6px 36px #C9D2DC;
+  border-radius: 8px;
+  padding: 20px;
+  align-items: center;
+}
+.m-match-item img {
+  --size: 60px;
+  max-width: 100%;
+  max-height: 100%;
+  border-radius: 100%;
+  width: var(--size);
+  height: var(--size);
+}
+.m-match-item .chat-button {
+  --size: 3rem;
+  appearance: none;
+  border-radius: 100px;
+  font-size: 0;
+  background: var(--mint-300);
+  border: 0;
+  width: var(--size);
+  height: var(--size);
+  justify-self: end;
+}
+
+.o-match-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
 }
 
 /*# sourceMappingURL=style.css.map */

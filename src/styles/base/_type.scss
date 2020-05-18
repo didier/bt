@@ -1,4 +1,6 @@
+
 // Typography
+
 @import url('https://rsms.me/inter/inter.css');
 
 @supports (font-variation-settings: normal) {
@@ -12,6 +14,14 @@ h1 {
   font-size: 68px;
   line-height: 1.25em;
   letter-spacing: -.035em;
+
+  @media screen and (max-width: $bp-tablet-md) {
+
+    font-weight: 600;
+    font-size: 38px;
+    line-height: 1.25em;
+    letter-spacing: -.055em;
+  }
 }
 
 h2 {
@@ -19,6 +29,14 @@ h2 {
   font-size: 50px;
   line-height: 1.25em;
   letter-spacing: -.04em;
+
+  @media screen and (max-width: $bp-tablet-md) {
+
+    font-weight: 500;
+    font-size: 28px;
+    line-height: 1.25em;
+    letter-spacing: -.055em;
+  }
 }
 
 h3 {
@@ -26,6 +44,14 @@ h3 {
   font-size: 38px;
   line-height: 1.25em;
   letter-spacing: -.055em;
+
+  @media screen and (max-width: $bp-tablet-md) {
+
+    font-weight: 500;
+    font-size: 20px;
+    line-height: 1.25em;
+    letter-spacing: -.035em;
+  }
 }
 
 h4 {
@@ -33,6 +59,10 @@ h4 {
   font-size: 28px;
   line-height: 1.25em;
   letter-spacing: -.055em;
+
+  @media screen and (max-width: $bp-tablet-md) {
+
+  }
 }
 
 h5 {
@@ -40,6 +70,10 @@ h5 {
   font-size: 20px;
   line-height: 1.25em;
   letter-spacing: -.035em;
+
+  @media screen and (max-width: $bp-tablet-md) {
+
+  }
 }
 
 p {

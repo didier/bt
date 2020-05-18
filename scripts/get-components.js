@@ -10,7 +10,7 @@ const fs = require('fs');
  * `readdirp` settings
  * @constant
  */
-const settings = {
+const options = {
   root: 'src/views/partials/components',
   entryType: 'all',
   fileFilter: ['*.scss'],
@@ -18,26 +18,27 @@ const settings = {
 };
 
 /** @param {Object} componentStyles - Array in which the matched `.scss` files will be stored */
-let componentStyles = [];
-
+const componentStyles = []
 /** Gets all `.scss` component files in view/partials/components and outputs them to `_components.scss` */
 function getComponents() {
 
   /** Clear `_components.scss` */
-  fs.writeFileSync('src/styles/base/_components.scss', '', (err) => {
+  fs.writeFile('src/styles/base/_components.scss', '', (err) => {
     if (err) throw err
   })
 
-  readdirp(settings,
-    /**
-     * This callback is executed everytime a file or directory is found inside the components directory.
-     * Checks if the matched file is a valid `.scss` file
-     * */
-    ({ name, path }) => `${path}`.includes('.scss') && componentStyles.push(path),
+  /** Append componenty styles to `_components.scss` */
+  readdirp('src/views/partials/components', { fileFilter: '*.scss', alwaysStat: true })
+    .on('data', ({ path }) => componentStyles.push(path))
+    .on('warn', error => console.error('non-fatal error', error))
+    .on('error', error => console.error('fatal error', error))
 
-    /** This callback is executed when there are no more files to be found */
-    (err) => {
-      if (err) throw err;
+    /*
+    * This callback is executed everytime a file or directory is found inside the components directory.
+    * Checks if the matched file is a valid `.scss` file
+    */
+    .on('end', () => {
+      // console.log(...componentStyles);
       componentStyles
         .sort()
         .forEach(component => {
@@ -49,9 +50,9 @@ function getComponents() {
             })
           }
         })
+
       console.log('Appended all components to \`_components.scss\`')
-    }
-  )
+    });
 }
 
 getComponents()
