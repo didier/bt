@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Mouse Trail — Didier Catz</title>
+  </head>
+
+  <style>
+    .mouse-follow {
+      --x: 0;
+      --y: 0;
+      position: absolute;
+      background: red;
+      width: 1rem;
+      height: 1rem;
+      top: var(--y);
+      left: var(--x);
+    }
+  </style>
+
+  <body>
+    <h1>Lorem, ipsum dolor.</h1>
+    <p>
+      Lorem ipsum dolor sit amet consectetur adipisicing elit. Quos molestiae
+      impedit suscipit, doloribus necessitatibus esse aliquid, neque laborum
+      iusto sit qui distinctio illo fuga maiores! Suscipit modi tempora facilis,
+      eaque saepe temporibus omnis quasi tempore, quia vitae alias repudiandae
+      eveniet.
+    </p>
+
+    <div class="mouse-follow">
+      Hey!
+    </div>
+
+    <script src="app.js"></script>
+  </body>
+</html>
