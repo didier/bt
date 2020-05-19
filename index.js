@@ -6,29 +6,30 @@
 
 // Packages
 const
-  fs = require('fs'),
-  express = require('express'),
-  app = express(),
-  hbs = require('express-handlebars');
+  fs = require('fs')
+const express = require('express')
 
-let users = [];
+const app = express()
+const hbs = require('express-handlebars')
+
+let users = []
 fs.readFile('./src/data/users.json', (err, data) => {
-  if (err) throw err
+  if (err) { throw err }
   users = JSON.parse(data)
-});
+})
 
-let matches = [];
+let matches = []
 fs.readFile('./src/data/matches.json', (err, data) => {
-  if (err) throw err
+  if (err) { throw err }
   matches = JSON.parse(data)
-});
+})
 
 /**
  * Defines the port on which the server is hosted.
  * Default is `process.env.PORT`. Otherwise, it falls back to port 3000.
  * @constant
  */
-const port = process.env.PORT || 3000;
+const port = process.env.PORT || 3000
 
 app
   // Serve static files in `/public`
@@ -49,14 +50,14 @@ app.get('/matches', (req, res) => {
   })
 })
 
-/** Defines the routes that will be served up by the server.*/
+/** Defines the routes that will be served up by the server. */
 const routes = {
   '/': 'index.hbs',
   '*': '404.hbs',
-};
+}
 
 // Loop over and destructure the routes object, keepin' it DRY
-for (let [route, source] of Object.entries(routes)) {
+for (const [route, source] of Object.entries(routes)) {
   app.get(route, (req, res) => {
     res.render(`${source}`)
   })

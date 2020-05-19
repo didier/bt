@@ -13,7 +13,7 @@
   },
   "root": true,
   "globals": {},
-  "extends": ["eslint:recommended", "airbnb"],
+  "extends": ["eslint:recommended"],
   "rules": {
     "semi": [2, "never"],
     "brace-style": [
@@ -23,6 +23,7 @@
         "allowSingleLine": true
       }
     ],
+    "no-template-curly-in-string": "error",
     "camelcase": 2,
     "comma-style": [2, "last"],
     "curly": 2,
@@ -59,12 +60,12 @@
     "prefer-spread": 1,
     "prefer-arrow-callback": 2,
     "prefer-const": 1,
-    "react/boolean-prop-naming": [
-      "warn",
-      {
-        "rule": "^(is|has)[A-Z]([A-Za-z0-9]?)+"
-      }
-    ],
+    // "react/boolean-prop-naming": [
+    //   "warn",
+    //   {
+    //     "rule": "^(is|has)[A-Z]([A-Za-z0-9]?)+"
+    //   }
+    // ],
     "import/prefer-default-export": 0,
     "no-console": [
       1,
