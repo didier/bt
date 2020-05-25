@@ -14,12 +14,11 @@
   "root": true,
   "globals": {},
   "extends": [
-    "plugin:prettier/recommended",
-    "eslint:recommended"
+    "eslint:recommended",
+    "plugin:prettier/recommended"
   ],
   "rules": {
     "semi": [2, "never"],
-    // "prettier/prettier": "error",
     "brace-style": [
       2,
       "1tbs",
