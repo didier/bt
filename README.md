@@ -2,6 +2,8 @@
 
 A dating app assignment for @cmda-bt Blok Tech
 
+For more in-depth info on this project, isntallation, assets and contributing, check out the [Wiki](https://github.com/didiercatz/bt/wiki).
+
 ## Installing
 
 ```bash
