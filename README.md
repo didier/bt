@@ -28,14 +28,22 @@ $ npm run dev
 
 This projects uses componentization in the form of Atomic Design. Components are separated in three categories: atoms, molecules and organisms. For reference, see [Brad Frost's excellent article on Atomic Design](https://bradfrost.com/blog/post/atomic-web-design/)
 
+In short:
+
+- **Atoms** are small single elements or units — buttons, input fields, etc.
+- **Molecules** are related elements like an input field and a button together.
+- **Organisms** are made up of molecules and atoms, like a form containing multiple input fields and buttons.
+
 In this project, components are stores in `views/partials/components`
 
+```bash
 views/
 ├── partials/
 │ ├── components/
 | │ ├── atoms/
 | │ ├── molecules/
 | │ ├── organisms/
+```
 
 ## Conventions
 
