@@ -40,12 +40,14 @@ In this project, components are stores in `views/partials/components`
 views/
 ├── partials/
 │ ├── components/
-| │ ├── atoms/
-| │ ├── molecules/
-| │ ├── organisms/
+│ │ ├── atoms/
+│ │ │ ├── _nav.scss
+│ │ │ ├── nav.hbs
+│ │ ├── molecules/
+│ │ ├── organisms/
 ```
 
-When running the front-end with `npm run dev`, a script called `get-components.js` is ran aswell. This automatically adds all `component.scss` files to a single `_components.scss` file which is imported into the main bundle. See [`scripts/get-components.js`](https://github.com/didiercatz/bt/blob/master/scripts/get-components.js).
+When running the front-end with `npm run dev`, a script called `get-components.js` is ran aswell. This automatically adds all component `.scss` (for example: `_nav.scss`) files to a single `_components.scss` file which is imported into the main bundle. See [`scripts/get-components.js`](https://github.com/didiercatz/bt/blob/master/scripts/get-components.js) and [`src/styles/base/_components.scss`](https://github.com/didiercatz/bt/blob/master/src/styles/base/_components.scss).
 
 ## Conventions
 

@@ -68,6 +68,18 @@ for (const [route, source] of Object.entries(routes)) {
 }
 
 io.on('connection', (socket) => {
-	console.log(socket)
+	// console.log(socket)
 	console.log('a user connected')
+
+	io.emit('user connected', {
+		message: 'A new user has connected!',
+	})
+
+	io.on('disconnect', (socket) => {
+		console.log('a user has disconnected.')
+	})
+})
+
+io.on('user connected', (data) => {
+	console.log(data)
 })
