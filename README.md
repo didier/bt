@@ -1,63 +1,24 @@
-# Miit — Modern Dating
-
-A dating app assignment for @cmda-bt Blok Tech
-
-For more in-depth info on this project, isntallation, assets and contributing, check out the [Wiki](https://github.com/didiercatz/bt/wiki).
-
-## Installing
-
-```bash
-$ git clone https://github.com/didiercatz/bt.git
-```
-
-```bash
-$ npm install # or yarn
-```
-
-## Running the server
-
-```bash
-$ npm run start # or yarn start
-```
-
-## Running the front-end
-
-```bash
-$ npm run dev # or yarn dev
-```
-
-## Components
-
-This projects uses componentization in the form of Atomic Design. Components are separated in three categories: atoms, molecules and organisms. For reference, see [Brad Frost's excellent article on Atomic Design](https://bradfrost.com/blog/post/atomic-web-design/)
-
-In short:
-
-- **Atoms** are small single elements or units — buttons, input fields, etc.
-- **Molecules** are related elements like an input field and a button together.
-- **Organisms** are made up of molecules and atoms, like a form containing multiple input fields and buttons.
-
-In this project, components are stores in `views/partials/components`
-
-```bash
-views/
-├── partials/
-│ ├── components/
-│ │ ├── atoms/
-│ │ │ ├── _nav.scss
-│ │ │ ├── nav.hbs
-│ │ ├── molecules/
-│ │ ├── organisms/
-```
-
-When running the front-end with `npm run dev`, a script called `get-components.js` is ran aswell. This automatically adds all component `.scss` (for example: `_nav.scss`) files to a single `_components.scss` file which is imported into the main bundle. See [`scripts/get-components.js`](https://github.com/didiercatz/bt/blob/master/scripts/get-components.js) and [`src/styles/base/_components.scss`](https://github.com/didiercatz/bt/blob/master/src/styles/base/_components.scss).
-
-## Conventions
-
-This projects uses `eslint` and `stylelint`. Be sure to install those in your editor, or run their respective scripts.
-
-Boolean variables are to be prepended with either `is` or `has`, e.g.:
-
-```js
-const isLoggedIn = true
-const hasUserLoggedIn = true
-```
+qlmanage: p requires at least one file argument
+Usage: qlmanage [OPTIONS] path...
+-h Display this help
+-r Force reloading Generators list
+-r cache Reset thumbnail disk cache
+-m [name ...] Display statistics about quicklookd. Stats names:
+_ plugins Show the generators list
+_ server Show quicklookd life information
+_ memory Show quicklookd memory consumption
+_ burst Show statistics about the last burst
+_ threads Show concurrent accesses stats
+_ other Show other information about quicklookd
+-d debugLevel Integer between 1-4
+-p Compute previews of the documents
+-t Compute thumbnails of the documents
+-x Use quicklookd (remote computation)
+-i Compute thumbnail in icon mode
+-s size Size for the thumbnail
+-f factor Scale factor for the thumbnail
+-F factor Scale factor for the thumbnail, draw downscaled and compare to 1x
+-z Display generation performance info (don't display thumbnails)
+-o dir Output result in dir (don't display thumbnails or previews)
+-c contentType Force the content type used for the documents
+-g generator Force the generator to use
