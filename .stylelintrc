@@ -7,7 +7,6 @@
   "rules": {
     "length-zero-no-unit": true,
     "number-leading-zero": "never",
-    "indentation": "tab",
     "function-comma-space-after": "always",
     "declaration-empty-line-before": null,
     "color-hex-case": null,
