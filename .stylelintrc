@@ -10,7 +10,7 @@
       'indentation': 'tab',
       'length-zero-no-unit': true,
       'value-list-comma-newline-after': 'always',
-      'declaration-colon-newline-after': 'always',
+      'declaration-colon-newline-after': 'always-multi-line',
       'function-comma-space-after': 'always',
       'declaration-empty-line-before': null,
       'max-empty-lines': 1,
