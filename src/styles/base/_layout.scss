@@ -1,13 +1,13 @@
 .container {
-  margin: 0 auto;
-  padding: 0 24px;
+	margin: 0 auto;
+	padding: 0 24px;
 
-  @media screen and (max-width: $bp-tablet-md) {
-    padding: 0 16px;
-  }
+	@media screen and (max-width: $bp-tablet-md) {
+		padding: 0 16px;
+	}
 
-  &-lg {
-    @extend .container;
-    max-width: $bp-desktop-md;
-  }
+	&-lg {
+		@extend .container;
+		max-width: $bp-desktop-md;
+	}
 }
