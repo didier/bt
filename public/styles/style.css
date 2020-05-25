@@ -16,9 +16,9 @@
   --gray-900: #1a202c;
   --black: var(--gray-900);
   --white: white;
-  --in-out: cubic-bezier(.79, .14, .15, .86);
-  --in: cubic-bezier(.6, .04, .98, .34);
-  --out: cubic-bezier(.08, .82, .17, 1);
+  --in-out: cubic-bezier(0.79, 0.14, 0.15, 0.86);
+  --in: cubic-bezier(0.6, 0.04, 0.98, 0.34);
+  --out: cubic-bezier(0.08, 0.82, 0.17, 1);
   --t-100: 100ms;
   --t-200: 200ms;
   --t-300: 300ms;

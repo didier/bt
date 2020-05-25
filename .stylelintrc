@@ -5,6 +5,7 @@
     "stylelint-8-point-grid"
   ],
   "rules": {
+    "indentation": "tab",
     "length-zero-no-unit": true,
     "number-leading-zero": "never",
     "function-comma-space-after": "always",
