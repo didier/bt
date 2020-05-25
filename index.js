@@ -45,6 +45,11 @@ app
 			users,
 		})
 	})
+	.get('/chat', (req, res) => {
+		res.render('chat.hbs', {
+			user: users[0],
+		})
+	})
 
 // Application running on port...
 const server = app.listen(port, () => {
@@ -69,17 +74,22 @@ for (const [route, source] of Object.entries(routes)) {
 
 io.on('connection', (socket) => {
 	// console.log(socket)
-	console.log('a user connected')
 
-	io.emit('user connected', {
-		message: 'A new user has connected!',
+	// socket.on('disconnect', (socket) => {
+	// 	socket.emit('user online', false)
+	// 	console.log('A user has disconnected.')
+	// })
+
+	// socket.on('user connected', () => {
+	// 	socket.emit('user online', true)
+	// 	console.log('A user has connected.')
+	// })
+
+	socket.on('chat message', (message) => {
+		socket.broadcast.emit('chat message', message)
 	})
 
-	io.on('disconnect', (socket) => {
-		console.log('a user has disconnected.')
+	socket.on('user typing', (message) => {
+		socket.broadcast.emit('user typing')
 	})
-})
-
-io.on('user connected', (data) => {
-	console.log(data)
 })

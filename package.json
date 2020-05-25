@@ -6,7 +6,7 @@
 	"scripts": {
 		"start": "node index.js",
 		"get-components": "node scripts/get-components.js",
-		"dev": "yarn get-components; NODE_ENV=development run-p sass start sync",
+		"dev": "yarn get-components; NODE_ENV=development run-p sass sync",
 		"sync": "browser-sync start --no-notify --proxy 'localhost:3000' --files 'src/data/, src/styles/**/*, src/views/**/**/**/**'",
 		"sass": "sass --watch --poll src/:public/",
 		"lint": "prettier **/*.js --loglevel 'silent' & eslint --fix"

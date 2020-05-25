@@ -1,3 +1,4 @@
+@charset "UTF-8";
 @import url("https://rsms.me/inter/inter.css");
 :root {
   --font: "Inter";
@@ -14,6 +15,15 @@
   --gray-800: #2D3748;
   --gray-900: #1A202C;
   --black: var(--gray-900);
+  --white: white;
+  --in-out: cubic-bezier(.79, .14, .15, .86);
+  --in: cubic-bezier(.6, .04, .98, .34);
+  --out: cubic-bezier(.08, .82, .17, 1);
+  --t-100: 100ms;
+  --t-200: 200ms;
+  --t-300: 300ms;
+  --t-400: 400ms;
+  --t-500: 500ms;
 }
 
 @supports (font-variation-settings: normal) {
@@ -99,16 +109,16 @@ body {
   line-height: 1.5em;
 }
 
-.container, .container-lg {
+.container, .container-lg, .chat-form {
   margin: 0 auto;
   padding: 0 24px;
 }
 @media screen and (max-width: 768px) {
-  .container, .container-lg {
+  .container, .container-lg, .chat-form {
     padding: 0 16px;
   }
 }
-.container-lg {
+.container-lg, .chat-form {
   max-width: 1280px;
 }
 
@@ -152,6 +162,119 @@ nav.a-nav ul li:not(:last-child) {
   width: var(--size);
   height: var(--size);
   justify-self: end;
+}
+
+.chat-window {
+  background: var(--gray-100);
+  flex-direction: column;
+  display: flex;
+  padding-top: 32px;
+  padding-bottom: 16px;
+}
+.chat-window .chat-message {
+  margin: 2px 0;
+  transition: all var(--t-300) var(--in-out);
+  transition-delay: 1s;
+  transform-origin: top left;
+  transform: scale(0);
+  opacity: 0;
+}
+.chat-window .chat-message p {
+  border-radius: 8px;
+  padding: 8px 12px;
+  max-width: 40ch;
+}
+.chat-window .chat-message.receive {
+  align-self: start;
+}
+.chat-window .chat-message.receive p {
+  background: var(--mint-300);
+  color: var(--white);
+  border-top-left-radius: 0;
+}
+.chat-window .chat-message.send {
+  align-self: end;
+  transform-origin: top right;
+}
+.chat-window .chat-message.send p {
+  border-top-right-radius: 0;
+  background-color: var(--white);
+}
+.chat-window .chat-message.type-indicator {
+  align-self: start;
+  transition: all var(--t-300) var(--in-out);
+  opacity: 0;
+  order: 1;
+  transform: scale(0);
+  transform-origin: top left;
+}
+.chat-window .chat-message.type-indicator p {
+  background: var(--gray-400);
+  color: var(--white);
+  border-top-left-radius: 0;
+}
+.chat-window .chat-message.type-indicator p::after {
+  content: "•••";
+}
+.chat-window .chat-message.active {
+  opacity: 1;
+  transform: scale(100%);
+}
+
+.chat-form {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  background: var(--gray-200);
+}
+.chat-form input,
+.chat-form button {
+  font-size: 1rem;
+  appearance: none;
+  background: var(--white);
+  border: 1px solid var(--gray-300);
+  padding: 8px 12px;
+  border-radius: 8px;
+}
+.chat-form input {
+  flex-grow: 1;
+  margin-right: 16px;
+  --size: 42px;
+  height: var(--size);
+}
+.chat-form button {
+  --size: 32px;
+  width: var(--size);
+  height: var(--size);
+  background: var(--mint-300);
+  color: var(--white);
+  border-radius: 100px;
+  position: relative;
+}
+.chat-form button svg {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+}
+
+header {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+header span.status-indicator {
+  margin-left: 8px;
+  margin-top: 2px;
+  width: 6px;
+  height: 6px;
+  background: var(--gray-500);
+  border-radius: 100px;
+}
+header span.status-indicator.active {
+  background: #35ee35;
 }
 
 .o-match-list {
