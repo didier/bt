@@ -57,6 +57,7 @@ h4 {
 	letter-spacing: -0.055em;
 
 	@media screen and (max-width: $bp-tablet-md) {
+		font-size: 1rem;
 	}
 }
 
@@ -67,6 +68,7 @@ h5 {
 	letter-spacing: -0.035em;
 
 	@media screen and (max-width: $bp-tablet-md) {
+		font-size: 0.8rem;
 	}
 }
 

@@ -9,7 +9,7 @@ const fs = require('fs')
 const express = require('express')
 const app = express()
 const hbs = require('express-handlebars')
-const bodyParser = require('body-parser')
+// const bodyParser = require('body-parser')
 // hbs.registerPartials(`${__dirname}/views/partials`)
 
 let users = []
@@ -89,7 +89,7 @@ io.on('connection', (socket) => {
 		socket.broadcast.emit('chat message', message)
 	})
 
-	socket.on('user typing', (message) => {
+	socket.on('user typing', () => {
 		socket.broadcast.emit('user typing')
 	})
 })
