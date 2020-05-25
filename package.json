@@ -53,10 +53,13 @@
 		"stylelint-config-standard": "^20.0.0"
 	},
 	"dependencies": {
+		"body-parser": "^1.19.0",
 		"express": "^4.17.1",
+		"express-handlebars": "^4.0.4",
 		"handlebars": "^4.7.6",
 		"hbs": "^4.1.1",
-		"node-sass": "^4.14.1"
+		"node-sass": "^4.14.1",
+		"socket.io": "^2.3.0"
 	},
 	"husky": {
 		"hooks": {

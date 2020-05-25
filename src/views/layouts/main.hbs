@@ -3,9 +3,13 @@
 {{> 'includes/head' title='Home'}}
 
 <body>
-  {{> 'components/molecules/header/header' }}
-  <main class="container-lg">
-    {{{body}}} </main>
+	{{> 'components/molecules/header/header' }}
+	<main class="container-lg">
+		{{{body}}} </main>
+	<script src="/socket.io/socket.io.js"></script>
+	<script>
+		const socket = io();
+	</script>
 </body>
 
 </html>

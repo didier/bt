@@ -15,13 +15,13 @@ $ npm install # or yarn
 ## Running the server
 
 ```bash
-$ npm run start
+$ npm run start # or yarn start
 ```
 
 ## Running the front-end
 
 ```bash
-$ npm run dev
+$ npm run dev # or yarn dev
 ```
 
 ## Components
@@ -44,6 +44,8 @@ views/
 | │ ├── molecules/
 | │ ├── organisms/
 ```
+
+When running the front-end with `npm run dev`, a script called `get-components.js` is ran aswell. This automatically adds all `component.scss` files to a single `_components.scss` file which is imported into the main bundle. See [`scripts/get-components.js`](https://github.com/didiercatz/bt/blob/master/scripts/get-components.js).
 
 ## Conventions
 

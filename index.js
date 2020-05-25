@@ -9,8 +9,8 @@ const fs = require('fs')
 const express = require('express')
 const app = express()
 const hbs = require('express-handlebars')
-
-hbs.registerPartials(`${__dirname}/views/partials`)
+const bodyParser = require('body-parser')
+// hbs.registerPartials(`${__dirname}/views/partials`)
 
 let users = []
 fs.readFile('./src/data/users.json', (err, data) => {
@@ -46,11 +46,13 @@ app
 		})
 	})
 
-	// Application running on port...
-	.listen(port, () => {
-		console.log(`Miit is running in ${process.env.NODE_ENV} mode on http://localhost:${port + 1}`)
-		process.send && process.send('online')
-	})
+// Application running on port...
+const server = app.listen(port, () => {
+	console.log(`Miit is running in ${process.env.NODE_ENV} mode on http://localhost:${port + 1}`)
+	process.send && process.send('online')
+})
+
+const io = require('socket.io')(server)
 
 /** Defines the routes that will be served up by the server. */
 const routes = {
@@ -64,3 +66,8 @@ for (const [route, source] of Object.entries(routes)) {
 		res.render(`${source}`)
 	})
 }
+
+io.on('connection', (socket) => {
+	console.log(socket)
+	console.log('a user connected')
+})
