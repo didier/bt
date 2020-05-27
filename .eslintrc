@@ -14,8 +14,8 @@
   "root": true,
   "globals": {},
   "extends": [
-    "eslint:recommended",
-    "plugin:prettier/recommended"
+    "plugin:prettier/recommended",
+    "eslint:recommended"
   ],
   "rules": {
     "semi": [2, "never"],
@@ -39,7 +39,7 @@
     "new-cap": 2,
     "quotes": [2, "single"],
     "no-trailing-spaces": 2,
-    "comma-dangle": 0,
+		"comma-dangle": 0,
     "max-len": [
       2,
       {

@@ -82,12 +82,24 @@ h4 {
   line-height: 1.25em;
   letter-spacing: -0.055em;
 }
+@media screen and (max-width: 768px) {
+  h4 {
+    font-size: 1rem;
+  }
+}
+
 h5 {
   font-weight: 500;
   font-size: 20px;
   line-height: 1.25em;
   letter-spacing: -0.035em;
 }
+@media screen and (max-width: 768px) {
+  h5 {
+    font-size: 0.8rem;
+  }
+}
+
 p {
   max-width: 66ch;
 }
@@ -221,6 +233,12 @@ nav.a-nav ul li:not(:last-child) {
   transform: scale(100%);
 }
 
+.o-match-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
 .chat-form {
   padding-top: 8px;
   padding-bottom: 8px;
@@ -275,12 +293,6 @@ header span.status-indicator {
 }
 header span.status-indicator.active {
   background: #35ee35;
-}
-
-.o-match-list {
-  list-style: none;
-  padding: 0;
-  margin: 0;
 }
 
 /*# sourceMappingURL=style.css.map */

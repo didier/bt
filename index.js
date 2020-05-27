@@ -9,9 +9,20 @@ const fs = require('fs')
 const express = require('express')
 const app = express()
 const hbs = require('express-handlebars')
-// const bodyParser = require('body-parser')
-// hbs.registerPartials(`${__dirname}/views/partials`)
+const { DB_USERNAME, DB_PASSWORD, DB_NAME } = require('dotenv').config()
+const uri = `mongodb+srv://${DB_USERNAME}:${DB_PASSWORD}@blok-tech-qwrn1.azure.mongodb.net/${DB_NAME}?retryWrites=true&w=majority`
 
+const mongodb = require('mongodb')
+
+let db = null
+mongodb.MongoClient.connect(uri, (err, client) => {
+	if (err) {
+		throw err
+	}
+
+	db = client.db(process.env.DB_NAME)
+	console.log(db)
+})
 let users = []
 fs.readFile('./src/data/users.json', (err, data) => {
 	if (err) {
@@ -41,12 +52,12 @@ app
 	.set('views', 'src/views')
 
 	.get('/matches', (req, res) => {
-		res.render('matches.hbs', {
+		res.status(200).render('matches.hbs', {
 			users,
 		})
 	})
 	.get('/chat', (req, res) => {
-		res.render('chat.hbs', {
+		res.status(200).render('chat.hbs', {
 			user: users[0],
 		})
 	})
@@ -73,18 +84,6 @@ for (const [route, source] of Object.entries(routes)) {
 }
 
 io.on('connection', (socket) => {
-	// console.log(socket)
-
-	// socket.on('disconnect', (socket) => {
-	// 	socket.emit('user online', false)
-	// 	console.log('A user has disconnected.')
-	// })
-
-	// socket.on('user connected', () => {
-	// 	socket.emit('user online', true)
-	// 	console.log('A user has connected.')
-	// })
-
 	socket.on('chat message', (message) => {
 		socket.broadcast.emit('chat message', message)
 	})
