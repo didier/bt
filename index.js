@@ -9,7 +9,10 @@ const fs = require('fs')
 const express = require('express')
 const app = express()
 const hbs = require('express-handlebars')
-const { DB_USERNAME, DB_PASSWORD, DB_NAME } = require('dotenv').config()
+require('dotenv').config()
+
+const { DB_USERNAME, DB_PASSWORD, DB_NAME } = process.env
+
 const uri = `mongodb+srv://${DB_USERNAME}:${DB_PASSWORD}@blok-tech-qwrn1.azure.mongodb.net/${DB_NAME}?retryWrites=true&w=majority`
 
 const mongodb = require('mongodb')
@@ -20,7 +23,7 @@ mongodb.MongoClient.connect(uri, (err, client) => {
 		throw err
 	}
 
-	db = client.db(process.env.DB_NAME)
+	db = client.db(DB_NAME)
 	console.log(db)
 })
 let users = []
