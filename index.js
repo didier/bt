@@ -8,11 +8,16 @@
 const express = require('express'),
 	app = express(),
 	hbs = require('express-handlebars')
-
 require('dotenv').config()
 
 const { DB_URI, DB_NAME, PORT } = process.env
 
+/**
+ * Defines the port on which the server is hosted.
+ * Default is `process.env.PORT`. Otherwise, it falls back to port 3000.
+ * @constant
+ */
+const port = process.env.PORT || 3000
 const uri = DB_URI
 const MongoClient = require('mongodb').MongoClient
 const client = new MongoClient(uri, { useUnifiedTopology: true })
@@ -20,6 +25,7 @@ const client = new MongoClient(uri, { useUnifiedTopology: true })
 /**
  * @param users - A list of users in the database
  */
+
 let users = []
 client.connect((err, client) => {
 	if (err) {
@@ -40,13 +46,7 @@ client.connect((err, client) => {
 		})
 })
 
-/**
- * Defines the port on which the server is hosted.
- * Default is `process.env.PORT`. Otherwise, it falls back to port 3000.
- * @constant
- */
-const port = PORT || 3000
-
+console.log(users)
 app
 	// Serve static files in `/public`
 	.use(express.static('public'))
