@@ -10,8 +10,10 @@
 		transition: all var(--t-300) var(--in-out);
 		transition-delay: 1s;
 		transform-origin: top left;
-		transform: scale(0);
-		opacity: 0;
+		// transform: scale(0);
+		// opacity: 0;
+		opacity: 1;
+		transform: scale(100%);
 
 		p {
 			border-radius: 8px;
@@ -43,7 +45,7 @@
 			align-self: start;
 			transition: all var(--t-300) var(--in-out);
 			opacity: 0;
-			order: 1;
+			// order: 1;
 			transform: scale(0);
 			transform-origin: top left;
 
