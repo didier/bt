@@ -29,7 +29,7 @@ async function getComponents() {
 		}
 	})
 
-	/** Append componenty styles to `_components.scss` */
+	/** Append component styles to `_components.scss` */
 	readdirp('src/views/partials/components', { fileFilter: '*.scss', alwaysStat: true })
 		.on('data', ({ path }) => componentStyles.push(path))
 		.on('warn', (error) => console.error('non-fatal error', error))
@@ -50,7 +50,7 @@ async function getComponents() {
 					)
 				}
 			})
-			// console.log('Appended all components to `_components.scss`')
+			console.log('Appended all components to `_components.scss`')
 		})
 }
 
