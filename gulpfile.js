@@ -59,6 +59,7 @@ async function compileJS() {
 		.src('src/client/*.js')
 		.pipe(babel({ presets: ['@babel/env'] }))
 		.pipe(gulp.dest('public/js'))
+		.pipe(livereload())
 }
 
 async function compileSCSS() {
@@ -66,6 +67,7 @@ async function compileSCSS() {
 		.src(css.input)
 		.pipe(sass({ outputStyle: 'compressed' }).on('error', sass.logError))
 		.pipe(gulp.dest(css.output))
+		.pipe(livereload())
 }
 
 async function compileCSS() {
@@ -73,13 +75,12 @@ async function compileCSS() {
 		.src(css.output)
 		.pipe(autoprefixer({ cascade: false }))
 		.pipe(gulp.dest(css.output))
+		.pipe(livereload())
 }
 
 async function live() {
-	livereload.listen({
-		port: 3000,
-	})
-	return gulp.watch(css.input, compileSCSS)
+	livereload.listen()
+	return gulp.watch(css.input, parallel(compileSCSS, compileJS))
 }
 
 exports.default = series(getComponents, compileSCSS, parallel(compileCSS, compileJS))

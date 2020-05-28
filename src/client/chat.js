@@ -1,7 +1,7 @@
 const socket = io()
 
 window.addEventListener('load', () => {
-	let currentMessage = ''
+	const currentMessage = ''
 
 	const form = document.querySelector('.chat-form')
 	const messageInput = form.querySelector('#message')
@@ -16,7 +16,9 @@ window.addEventListener('load', () => {
 		form.addEventListener('submit', (event) => {
 			event.preventDefault()
 			const message = messageInput.value
-			if (message === '') return
+			if (message === '') {
+				return
+			}
 
 			socket.emit('chat message', message)
 
@@ -46,8 +48,9 @@ window.addEventListener('load', () => {
 		form.addEventListener('input', (event) => {
 			event.preventDefault()
 
-			console.log(event)
-			if (event.inputType.includes('delete')) return
+			if (event.inputType.includes('delete')) {
+				return
+			}
 			if (event.target.value !== '') {
 				socket.emit('user typing')
 			}

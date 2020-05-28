@@ -1,5 +1,5 @@
 module.exports = {
-	'/': index(),
+	'/': 'index.hbs',
 	'*': '404.hbs',
 }
 

@@ -5,12 +5,15 @@
  */
 
 // Packages
-const express = require('express'),
-	app = express(),
-	hbs = require('express-handlebars')
+
 require('dotenv').config()
 
+const express = require('express')
+const app = express()
+const hbs = require('express-handlebars')
+const MongoClient = require('mongodb').MongoClient
 const { DB_URI, DB_NAME, PORT } = process.env
+const client = new MongoClient(DB_URI, { useUnifiedTopology: true })
 
 /**
  * Defines the port on which the server is hosted.
@@ -18,9 +21,6 @@ const { DB_URI, DB_NAME, PORT } = process.env
  * @constant
  */
 const port = process.env.PORT || 3000
-const uri = DB_URI
-const MongoClient = require('mongodb').MongoClient
-const client = new MongoClient(uri, { useUnifiedTopology: true })
 
 /**
  * @param users - A list of users in the database
@@ -46,11 +46,9 @@ client.connect((err, client) => {
 		})
 })
 
-console.log(users)
 app
 	// Serve static files in `/public`
 	.use(express.static('public'))
-
 	// Register `hbs.engine` with the Express app.
 	.engine('hbs', hbs({ extname: 'hbs' }))
 
@@ -60,6 +58,14 @@ app
 	// Set the Views directory to `src/views`
 	.set('views', 'src/views')
 
+	// Hook up live reload to the Gulp instance
+	.use(require('connect-livereload')({ port: 35729 }))
+
+	// Static Routes
+	.get('/', (req, res) => {
+		res.status(200).render('index.hbs')
+	})
+	// Dynamic Routes
 	.get('/matches', (req, res) => {
 		res.status(200).render('matches.hbs', {
 			users,
@@ -70,6 +76,9 @@ app
 			user: users[0],
 		})
 	})
+	.get('*', (req, res) => {
+		res.status(404).render('404.hbs')
+	})
 
 // Application running on port...
 const server = app.listen(port, () => {
@@ -77,16 +86,6 @@ const server = app.listen(port, () => {
 })
 
 const io = require('socket.io')(server)
-
-/** Defines the routes that will be served up by the server. */
-const routes = require('./src/routes')
-
-// Loop over and destructure the routes object, keepin' it DRY
-for (const [route, source] of Object.entries(routes)) {
-	app.get(route, (req, res) => {
-		res.render(`${source}`)
-	})
-}
 
 io.on('connection', (socket) => {
 	socket.on('chat message', (message) => {

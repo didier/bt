@@ -15,7 +15,11 @@ window.addEventListener('load', function () {
     form.addEventListener('submit', function (event) {
       event.preventDefault();
       var message = messageInput.value;
-      if (message === '') return;
+
+      if (message === '') {
+        return;
+      }
+
       socket.emit('chat message', message);
       renderChat('send', message);
       form.reset();
@@ -39,8 +43,10 @@ window.addEventListener('load', function () {
   function type() {
     form.addEventListener('input', function (event) {
       event.preventDefault();
-      console.log(event);
-      if (event.inputType.includes('delete')) return;
+
+      if (event.inputType.includes('delete')) {
+        return;
+      }
 
       if (event.target.value !== '') {
         socket.emit('user typing');

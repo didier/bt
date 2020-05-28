@@ -4,10 +4,10 @@
 	"description": "Modern Dating",
 	"main": "index.js",
 	"scripts": {
-		"start": "NODE_ENV=development nodemon index.js",
-		"dev": "NODE_ENV=development run-p gulp:watch sync",
+		"start": "gulp && NODE_ENV=development node index.js",
+		"start:dev": "gulp && NODE_ENV=development nodemon index.js",
+		"dev": "NODE_ENV=development run-p start gulp:watch",
 		"gulp:watch": "gulp watch",
-		"sync": "browser-sync start --no-notify --proxy 'localhost:3000' --files 'src/data/, src/styles/**/*, src/views/**/**/**/**'",
 		"lint": "prettier src/**/*.js --loglevel 'silent' & eslint --fix"
 	},
 	"repository": {
@@ -34,7 +34,7 @@
 		"@babel/core": "^7.10.1",
 		"@babel/preset-env": "^7.10.1",
 		"babel-eslint": "^10.1.0",
-		"browser-sync": "^2.26.7",
+		"connect-livereload": "^0.6.1",
 		"eslint": "^7.0.0",
 		"eslint-config-airbnb": "^18.1.0",
 		"eslint-config-prettier": "^6.11.0",
@@ -43,7 +43,6 @@
 		"gulp": "^4.0.2",
 		"gulp-autoprefixer": "^7.0.1",
 		"gulp-babel": "^8.0.0",
-		"gulp-connect": "^5.7.0",
 		"gulp-livereload": "^4.0.2",
 		"gulp-sass": "^4.1.0",
 		"husky": "^4.2.5",
@@ -59,13 +58,10 @@
 		"stylelint-config-standard": "^20.0.0"
 	},
 	"dependencies": {
-		"body-parser": "^1.19.0",
 		"dotenv": "^8.2.0",
 		"express": "^4.17.1",
 		"express-handlebars": "^4.0.4",
-		"handlebars": "^4.7.6",
 		"mongodb": "^3.5.7",
-		"mongoose": "^5.9.16",
 		"socket.io": "^2.3.0"
 	},
 	"husky": {
