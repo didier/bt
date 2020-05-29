@@ -1,6 +1,7 @@
-# Miit — Modern Dating
+# Miit — Modern Dating.
+![Miit Banner](https://dsc.cloud/9e026c/olpae-ixil-ferfet-trisceles.png)
 
-A dating app assignment for @cmda-bt Blok Tech
+_A dating app assignment for @cmda-bt Blok Tech_
 
 ## Installing
 
