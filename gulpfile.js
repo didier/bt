@@ -80,7 +80,7 @@ async function compileCSS() {
 
 async function live() {
 	livereload.listen()
-	return gulp.watch(css.input, parallel(compileSCSS, compileJS))
+	return gulp.watch(css.input, series(compileSCSS, compileJS))
 }
 
 exports.default = series(getComponents, compileSCSS, parallel(compileCSS, compileJS))

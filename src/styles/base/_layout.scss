@@ -13,10 +13,13 @@
 }
 
 body {
-	display: flex;
-	flex-direction: column;
+	overflow-y: hidden;
 
-	main {
-		flex-grow: 1;
+	& > [class*='page'] {
+		// overflow-y: hidden;
+		// height: 100vh;
+		// grid-auto-flow: row;
+		display: grid;
+		grid-template-rows: auto 1fr;
 	}
 }
