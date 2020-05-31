@@ -5,6 +5,7 @@
 	"main": "index.js",
 	"scripts": {
 		"start": "gulp && NODE_ENV=development node index.js",
+		"serve": "gulp && NODE_ENV=development PORT=80 node index.js",
 		"start:dev": "gulp && NODE_ENV=development nodemon index.js",
 		"dev": "NODE_ENV=development run-p start gulp:watch",
 		"gulp:watch": "gulp watch",
