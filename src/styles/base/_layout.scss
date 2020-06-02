@@ -16,9 +16,6 @@ body {
 	overflow-y: hidden;
 
 	& > [class*='page'] {
-		// overflow-y: hidden;
-		// height: 100vh;
-		// grid-auto-flow: row;
 		display: grid;
 		grid-template-rows: auto 1fr;
 	}

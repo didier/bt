@@ -4,8 +4,7 @@
 	grid-template-columns: 1fr;
 	height: 100vh;
 	margin-top: 96px;
-	// justify-items: stretch;
-	// height: 100%;
+
 	.chat-form {
 		@extend .container-lg;
 		width: 100%;
@@ -61,12 +60,14 @@
 	display: flex;
 	align-items: center;
 	padding: 56px 24px 16px 24px;
-	justify-content: space-between;
 	width: 100%;
+	justify-content: space-between;
 	position: fixed;
 	top: 0;
-	left: 0;
+	left: 50%;
+	transform: translateX(-50%);
 	background: var(--white);
+	margin: 0 auto;
 
 	> a {
 		display: inline-block;
@@ -83,11 +84,8 @@
 		span.status-indicator {
 			position: absolute;
 			right: -12px;
-			// top: 8px;
 			top: 50%;
 			transform: translateY(-50%);
-			// margin-left: 8px;
-			// margin-top: 2px;
 			width: 6px;
 			height: 6px;
 			background: var(--gray-500);

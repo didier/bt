@@ -35,7 +35,7 @@ client.connect((err, client) => {
 	client
 		.db(DB_NAME)
 		.collection('users')
-		.find()
+		.find({ dob: { age: { $lt: 30 } } })
 		.limit(100)
 		.toArray((err, docs) => {
 			if (err) {
@@ -72,6 +72,11 @@ app
 		})
 	})
 	.get('/chat', (req, res) => {
+		res.status(200).render('chat.hbs', {
+			user: users[0],
+		})
+	})
+	.get('/chat/:user', (req, res) => {
 		res.status(200).render('chat.hbs', {
 			user: users[0],
 		})

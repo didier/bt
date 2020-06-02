@@ -1,37 +1,69 @@
 .m-match-item {
-  display: grid;
-  grid-template-columns: 5rem 1fr 5rem;
-  // grid-gap: 0;
-  margin: 1rem 0;
-  box-shadow: 0 6px 36px #C9D2DC;
-  border-radius: 8px;
-  padding: 20px;
-  align-items: center;
+	display: grid;
+	grid-template-columns: 5rem 1fr 5rem;
+	// grid-gap: 0;
+	margin: 1rem 0;
+	box-shadow: 0 6px 36px #c9d2dc;
+	border-radius: 8px;
+	padding: 20px;
+	align-items: center;
 
-  img {
-    --size: 60px;
-    max-width: 100%;
-    max-height: 100%;
-    border-radius: 100%;
-    width: var(--size);
-    height: var(--size);
-  }
+	img {
+		--size: 60px;
+		max-width: 100%;
+		max-height: 100%;
+		border-radius: 100%;
+		width: var(--size);
+		height: var(--size);
+	}
 
-  .meta {
-    .name {}
+	.meta {
+		.user {
+			display: flex;
+			align-items: center;
 
-    .matched-time {}
-  }
+			.name {
+				font-weight: 600;
+			}
 
-  .chat-button {
-    --size: 3rem;
-    appearance: none;
-    border-radius: 100px;
-    font-size: 0;
-    background: var(--mint-300);
-    border: 0;
-    width: var(--size);
-    height: var(--size);
-    justify-self: end;
-  }
+			.dot {
+				@extend .heading-5;
+				color: var(--gray-500);
+			}
+
+			> *:not(:last-child) {
+				margin-right: 8px;
+			}
+		}
+
+		.age {
+			color: var(--gray-600);
+		}
+
+		.message {
+			margin-top: 8px;
+			color: var(--gray-700);
+		}
+	}
+
+	.chat-button {
+		--size: 3rem;
+		display: inline-block;
+		appearance: none;
+		border-radius: 100px;
+		font-size: 0;
+		background: var(--mint-300);
+		border: 0;
+		width: var(--size);
+		height: var(--size);
+		justify-self: end;
+		position: relative;
+
+		svg {
+			position: absolute;
+			top: 50%;
+			left: 50%;
+			transform: translate(-50%, -50%);
+		}
+	}
 }
