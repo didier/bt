@@ -1,6 +1,7 @@
-# Miit — Modern Dating
+# Miit — Modern Dating.
+![Miit Banner](https://dsc.cloud/9e026c/olpae-ixil-ferfet-trisceles.png)
 
-A dating app assignment for @cmda-bt Blok Tech
+_A dating app assignment for @cmda-bt Blok Tech_
 
 ## Installing
 
@@ -18,7 +19,7 @@ $ npm install # or yarn
 $ npm run start # or yarn start
 ```
 
-## Running the front-end
+## Running the server + front-end
 
 ```bash
 $ npm run dev # or yarn dev
@@ -59,3 +60,16 @@ Boolean variables are to be prepended with either `is` or `has`, e.g.:
 const isLoggedIn = true
 const hasUserLoggedIn = true
 ```
+
+## Hooks, Linting and Formatting
+
+### ESLint
+
+ESLint is a JavaScript (EcmaScript) linter that shows you errors as you write your code.
+
+### Prettier
+
+Prettier is a formatter for HTML, CSS and JS that automatically makes your code -- well -- prettier. It formats based on your settings for indentation, bracket location, semicolons, etc. It's configured to listen to ESLint's config as well.
+
+### Husky (Pre-commit)
+This project uses `husky` on commit, which runs ESLint and Prettier before you're able to push, so all pushed code is nice and neat and (hopefully) error-free.
