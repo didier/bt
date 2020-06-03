@@ -12,15 +12,16 @@ const express = require('express')
 const app = express()
 const hbs = require('express-handlebars')
 const MongoClient = require('mongodb').MongoClient
-const { DB_URI, DB_NAME, PORT } = process.env
+const { PORT, DB_URI, DB_NAME } = process.env
 const client = new MongoClient(DB_URI, { useUnifiedTopology: true })
+const router = require('./src/router')
 
 /**
  * Defines the port on which the server is hosted.
  * Default is `process.env.PORT`. Otherwise, it falls back to port 3000.
  * @constant
  */
-const port = process.env.PORT || 3000
+const port = PORT || 3000
 
 /**
  * @param users - A list of users in the database
@@ -62,15 +63,7 @@ app
 	.use(require('connect-livereload')({ port: 35729 }))
 
 	// Static Routes
-	.get('/', (req, res) => {
-		res.status(200).render('index.hbs')
-	})
-	// Dynamic Routes
-	.get('/matches', (req, res) => {
-		res.status(200).render('matches.hbs', {
-			users,
-		})
-	})
+	.use(router)
 	.get('/chat', (req, res) => {
 		res.status(200).render('chat.hbs', {
 			user: users[0],

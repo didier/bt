@@ -14,7 +14,7 @@
   "root": true,
   "globals": {},
   "extends": [
-    "plugin:prettier/recommended",
+    // "plugin:prettier/recommended",
     "eslint:recommended"
   ],
   "rules": {
@@ -39,7 +39,7 @@
     "new-cap": 2,
     "quotes": [2, "single"],
     "no-trailing-spaces": 2,
-		"comma-dangle": 0,
+    "comma-dangle": 0,
     "max-len": [
       2,
       {
@@ -63,12 +63,6 @@
     "prefer-spread": 1,
     "prefer-arrow-callback": 2,
     "prefer-const": 1,
-    // "react/boolean-prop-naming": [
-    //   "warn",
-    //   {
-    //     "rule": "^(is|has)[A-Z]([A-Za-z0-9]?)+"
-    //   }
-    // ],
     "import/prefer-default-export": 0,
     "no-console": [
       1,
