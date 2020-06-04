@@ -1,10 +1,10 @@
 const MongoClient = require('mongodb').MongoClient
 const { ObjectId } = require('mongodb')
 const { DB_URI, DB_NAME } = process.env
-const client = new MongoClient(DB_URI, { useUnifiedTopology: true })
+const mongo = new MongoClient(DB_URI, { useUnifiedTopology: true })
 
 function connect({ name = 'users', query = {} }, callback) {
-	client.connect((err, client) => {
+	mongo.connect((err, client) => {
 		if (err) {
 			throw err
 		}
@@ -12,16 +12,30 @@ function connect({ name = 'users', query = {} }, callback) {
 			.db(DB_NAME)
 			.collection(name)
 			.find(query)
-			// .find()
-			.limit(100)
+			.limit(5)
 			.toArray((err, docs) => {
 				if (err) {
 					throw err
 				}
 				callback(docs)
-				client.close()
+				// client.close()
 			})
 	})
 }
 
-module.exports = { connect }
+function get({ name = 'users' }, callback) {
+	mongo.connect(async (err, client) => {
+		if (err) {
+			throw err
+		}
+
+		const data = await client.db(DB_NAME).collection(name)
+		callback(data, client)
+	})
+}
+
+module.exports = {
+	connect,
+	get,
+	mongo,
+}

@@ -1,6 +1,7 @@
 "use strict";
 
 var socket = io();
+console.log('Hey!');
 window.addEventListener('load', function () {
   var currentMessage = '';
   var form = document.querySelector('.chat-form');

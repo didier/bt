@@ -1,20 +1,33 @@
-const { connect } = require('../db')
-
+const { connect, get, mongo } = require('../db')
+const { ObjectId } = require('mongodb')
+const { DB_NAME } = process.env
 /**
  * @param users - A list of users in the database
  */
-let users = []
 
-connect({ name: 'users', query: { 'dob.age': { $lt: 32 } } }, (data) => {
+let users
+
+get({ name: 'users' }, (data, client) => {
 	users = data
+	console.log()
 })
 
-const chat = (req, res) => {
+const chat = async (req, res, next) => {
 	const id = req.params.id
-	const user = users.find((user) => user['_id'] === id)
-	res.status(200).render('chat.hbs', {
-		user,
-	})
+
+	try {
+		users
+			.findOne({ _id: ObjectId(id) })
+			.then((data) => {
+				res.status(200).render('chat.hbs', {
+					user: data,
+				})
+			})
+			.catch((error) => console.error(error))
+	} catch (error) {
+		console.error('Caught error:', error)
+		next(error)
+	}
 }
 
 module.exports = chat

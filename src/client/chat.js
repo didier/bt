@@ -1,5 +1,7 @@
 const socket = io()
 
+console.log('Hey!')
+
 window.addEventListener('load', () => {
 	const currentMessage = ''
 
