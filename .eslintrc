@@ -13,10 +13,7 @@
   },
   "root": true,
   "globals": {},
-  "extends": [
-    "plugin:prettier/recommended",
-    "eslint:recommended"
-  ],
+  "extends": ["plugin:prettier/recommended", "eslint:recommended"],
   "rules": {
     "semi": [2, "never"],
     "brace-style": [
@@ -36,10 +33,10 @@
     "guard-for-in": 2,
     "wrap-iife": 2,
     "no-undef": 2,
-    "new-cap": 2,
+    "new-cap": 0,
     "quotes": [2, "single"],
     "no-trailing-spaces": 2,
-		"comma-dangle": 0,
+    "comma-dangle": 0,
     "max-len": [
       2,
       {
