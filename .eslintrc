@@ -1,7 +1,7 @@
 {
   "parser": "babel-eslint",
   "parserOptions": {
-    "ecmaVersion": 8,
+    "ecmaVersion": 2020,
     "ecmaFeatures": {
       "modules": true
     }
@@ -15,7 +15,7 @@
   "globals": {},
   "extends": ["plugin:prettier/recommended", "eslint:recommended"],
   "rules": {
-    "semi": [2, "never"],
+    "semi": [0, "never"],
     "brace-style": [
       2,
       "1tbs",
@@ -60,12 +60,6 @@
     "prefer-spread": 1,
     "prefer-arrow-callback": 2,
     "prefer-const": 1,
-    // "react/boolean-prop-naming": [
-    //   "warn",
-    //   {
-    //     "rule": "^(is|has)[A-Z]([A-Za-z0-9]?)+"
-    //   }
-    // ],
     "import/prefer-default-export": 0,
     "no-console": [
       1,

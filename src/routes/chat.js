@@ -1,20 +1,45 @@
-const { connect } = require('../db')
+// Server side chat function
 
-/**
- * @param users - A list of users in the database
- */
-let users = []
+const { Create, Read } = require('../db')
+const { ObjectId } = require('mongodb')
 
-connect({ name: 'users', query: { 'dob.age': { $lt: 32 } } }, (data) => {
-	users = data
-})
+const getChat = async (req, res) => {
 
-const chat = (req, res) => {
-	const id = req.params.id
-	const user = users.find((user) => user['_id'] === id)
-	res.status(200).render('chat.hbs', {
-		user,
+
+	const user = await Read({
+		collection: 'users',
+		query: {
+			_id: ObjectId(req.params.userId)
+		}
 	})
+
+	const roomId = [req.session.user._id, req.params.userId].sort().toString().replace(',', '')
+
+	console.log('roomId :>>', roomId);
+
+	const chatData = await Read({
+		collection: 'chats',
+		query: { _id: roomId }
+	})
+
+	console.log(chatData);
+
+
+	if (chatData.length === []) {
+		await Create({
+			collection: 'chats',
+			data: {
+				_id: roomId,
+				messages: []
+			}
+		})
+	}
+
+	const chats = chatData[0].messages
+
+	console.log(chats)
+
+	res.status(200).render('chat', { user: user[0], roomId, loggedInUser: req.session.user, chats })
 }
 
-module.exports = chat
+module.exports = { getChat }

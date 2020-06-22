@@ -1,0 +1,42 @@
+<h1>
+  Welcome back to your profile, <%= user.firstName %> <%= user.lastName %>.
+</h1>
+
+<form method="POST" action="/profile" class="profile-form">
+  <fieldset>
+    <label for="name">First name</label>
+    <input
+      type="text"
+      name="firstName"
+      id="firstName"
+      value="<%= user.firstName %>"
+    />
+    <label for="name">Last name</label>
+    <input
+      type="text"
+      name="lastName"
+      id="lastName"
+      value="<%= user.lastName %>"
+    />
+    <label for="age">Age</label>
+    <input type="number" name="age" id="age" value="<%= user.age %>" />
+    <label for="age">Gender</label>
+    <br />
+    <select name="gender" id="gender">
+      <% genders.forEach(({gender, label}) => { %> <% if (locals.user.gender ===
+      gender) { %>
+      <option value="<%= gender %>" selected="selected"><%= label %></option>
+      <% } else { %>
+      <option value="<%= gender %>"><%= label %></option>
+      <% }%> <% }) %>
+    </select>
+  </fieldset>
+  <br />
+  <fieldset>
+    <h2>Please tell us something about yourself.</h2>
+    <label for="bio">Bio</label>
+    <textarea name="bio" id="bio" cols="30" rows="3"><%= user.bio %></textarea>
+  </fieldset>
+
+  <button type="submit">Save</button>
+</form>

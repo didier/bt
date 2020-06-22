@@ -1,73 +1,76 @@
 {
-	"name": "miit",
-	"version": "1.0.0",
-	"description": "Modern Dating",
+	"name": "team",
+	"version": "0.0.1",
+	"description": "A team-effort dating app for @cmda-bt",
 	"main": "index.js",
 	"scripts": {
-		"start": "gulp && NODE_ENV=development node index.js",
-		"serve": "gulp && NODE_ENV=development PORT=80 node index.js",
-		"start:dev": "gulp && NODE_ENV=development nodemon index.js",
-		"dev": "NODE_ENV=development run-p start:dev gulp:watch",
-		"gulp:watch": "gulp watch",
-		"lint": "prettier src/**/*.js --loglevel 'silent' & eslint --fix"
+		"start": "node index.js",
+		"dev": "NODE_ENV=development nodemon",
+		"debug": "NODE_ENV=debug nodemon",
+		"format": "prettier --config .prettierrc 'src/**/*.js' --write",
+		"lint": "eslint .",
+		"format:watch": "onchange 'src/**/*.js' -- prettier --write {{changed}}",
+		"docs": "npm i -D braintree-jsdoc-template && npx jsdoc -t node_modules/braintree-jsdoc-template index.js package.json ./src -r README.md -d docs && npm un braintree-jsdoc-template"
 	},
 	"repository": {
 		"type": "git",
-		"url": "git+https://github.com/didiercatz/bt.git"
+		"url": "git+https://github.com/didiercatz/team.git"
 	},
 	"keywords": [
-		"date",
 		"dating",
+		"app",
+		"progressive",
+		"enhancement",
 		"js",
 		"html",
 		"css",
 		"mongodb",
-		"progressive",
-		"enhancement"
+		"cmd"
 	],
-	"author": "Didier Catz",
+	"authors": [
+		"Didier Catz",
+		"Zoë Severiens",
+		"Max Hauser",
+		"Sybren Molenaar"
+	],
 	"license": "MIT",
 	"bugs": {
-		"url": "https://github.com/didiercatz/bt/issues"
+		"url": "https://github.com/didiercatz/team/issues"
 	},
-	"homepage": "https://github.com/didiercatz/bt#readme",
-	"devDependencies": {
-		"@babel/core": "^7.10.1",
-		"@babel/preset-env": "^7.10.1",
-		"babel-eslint": "^10.1.0",
-		"connect-livereload": "^0.6.1",
-		"eslint": "^7.0.0",
-		"eslint-config-airbnb": "^18.1.0",
-		"eslint-config-prettier": "^6.11.0",
-		"eslint-plugin-import": "^2.20.2",
-		"eslint-plugin-prettier": "^3.1.3",
-		"gulp": "^4.0.2",
-		"gulp-autoprefixer": "^7.0.1",
-		"gulp-babel": "^8.0.0",
-		"gulp-livereload": "^4.0.2",
-		"gulp-sass": "^4.1.0",
-		"husky": "^4.2.5",
-		"nodemon": "^2.0.3",
-		"npm-run-all": "^4.1.5",
-		"prettier": "^2.0.5",
-		"prettier-eslint": "^9.0.1",
-		"pretty-quick": "^2.0.1",
-		"readdirp": "^3.4.0",
-		"stylelint": "^13.5.0",
-		"stylelint-8-point-grid": "^0.2.6",
-		"stylelint-config-recommended": "^3.0.0",
-		"stylelint-config-standard": "^20.0.0"
-	},
+	"homepage": "https://github.com/didiercatz/team#readme",
 	"dependencies": {
+		"bcrypt": "^5.0.0",
+		"body-parser": "^1.19.0",
+		"cookie-parser": "^1.4.5",
 		"dotenv": "^8.2.0",
+		"ejs": "^3.1.3",
+		"ejs-lint": "^1.1.0",
 		"express": "^4.17.1",
-		"express-handlebars": "^4.0.4",
-		"mongodb": "^3.5.7",
+		"express-session": "^1.17.1",
+		"mongodb": "^3.5.8",
+		"multer": "^1.4.2",
+		"nodemon": "^2.0.4",
 		"socket.io": "^2.3.0"
 	},
-	"husky": {
-		"hooks": {
-			"pre-commit": "gulp && pretty-quick --staged"
-		}
+	"devDependencies": {
+		"babel-eslint": "^10.1.0",
+		"eslint": "^7.2.0",
+		"eslint-config": "^0.3.0",
+		"eslint-config-airbnb": "^18.1.0",
+		"eslint-import-resolver-alias": "^1.1.2",
+		"eslint-plugin-import": "^2.21.1",
+		"eslint-plugin-jsx-a11y": "^6.2.3",
+		"eslint-plugin-prettier": "^3.1.3",
+		"eslint-plugin-react": "^7.20.0",
+		"onchange": "^7.0.2",
+		"prettier": "^2.0.5",
+		"prettier-eslint": "^11.0.0",
+		"prettier-eslint-cli": "^5.0.0",
+		"prettier-stylelint": "^0.4.2",
+		"stylelint": "^13.6.0",
+		"stylelint-8-point-grid": "^0.2.6",
+		"stylelint-config-recommended": "^3.0.0",
+		"stylelint-config-standard": "^20.0.0",
+		"tidy-jsdoc": "^1.4.0"
 	}
 }

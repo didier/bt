@@ -1,13 +1,34 @@
 const router = require('express').Router()
-const index = require('./routes/index'),
-	matches = require('./routes/matches'),
-	chat = require('./routes/chat')
+
+const { getIndex, postIndex } = require('./routes/index')
+const { getLogin, postLogin } = require('./routes/login')
+const { getMatch, postMatch } = require('./routes/match')
+const { getMatches } = require('./routes/matches')
+const { getProfile, postProfile } = require('./routes/profile')
+const { logout } = require('./routes/logout')
+const { getChat } = require('./routes/chat')
+
+function validateSession(req, res, next) {
+	if (req.session.user) {
+		next()
+	} else {
+		res.redirect('/login')
+	}
+}
 
 router
-	.get('/', index)
-	.get('/matches', matches)
-	.get('/chat/:id', chat)
-	.get('/chat', (req, res) => res.redirect('/matches'))
-	.get('*', (req, res) => res.status(404).render('404.hbs'))
+	.get('/', validateSession, getIndex)
+	.post('/', postIndex)
+	.get('/profile', validateSession, getProfile)
+	.post('/profile', postProfile)
+	.get('/login', getLogin)
+	.post('/login', postLogin)
+	.get('/match/*', validateSession, getMatch)
+	.get('/matches/', validateSession, getMatches)
+	.post('/match/:userId/', validateSession, postMatch)
+	.get('/logout', logout)
+	.post('/logout', logout)
+	.get('/chat', getChat)
+	.get('/chat/:userId', validateSession, getChat)
 
 module.exports = router
