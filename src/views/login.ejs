@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+  <%- include ("./partials/head") %>
+
+  <body>
+    <main class="container-lg">
+      <h1>Log In</h1>
+      <form action="/login" method="POST">
+        <label for="user">Please select a user</label>
+        <select name="user" id="user">
+          <% users.forEach(user => { %>
+          <option value="<%= user._id %>"
+            ><%= user.firstName %> <%= user.lastName %>
+          </option>
+          <% }) %>
+        </select>
+        <button type="submit">Log in</button>
+      </form>
+    </main>
+
+    <% if (locals.signUp) { %>
+    <footer class="breadcrumb">
+      <a href="/login">&lt;- I already have an account.</a>
+    </footer>
+    <% } else {%>
+    <footer class="breadcrumb">
+      <a href="/signup">I don't have an account yet. -&gt;</a>
+    </footer>
+    <% } %>
+  </body>
+</html>

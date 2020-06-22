@@ -1,82 +1,118 @@
-"use strict";
+// Client side chat functionality
+const socket = io()
 
-var socket = io();
-console.log('Hey!');
-window.addEventListener('load', function () {
-  var currentMessage = '';
-  var form = document.querySelector('.chat-form');
-  var messageInput = form.querySelector('#message');
-  var typeIndicator = document.querySelector('.type-indicator');
-  var statusIndicator = document.querySelector('.status-indicator');
-  submit();
-  type();
-  status();
+socket.on('connect', () => {
 
-  function submit() {
-    form.addEventListener('submit', function (event) {
-      event.preventDefault();
-      var message = messageInput.value;
+	// Register DOM elements as variables
+	const form = document.querySelector('.chat-form')
+	const messageInput = document.querySelector('#message')
 
-      if (message === '') {
-        return;
-      }
+	const roomId = form.querySelector('#room-id').value
+	const userId = form.querySelector('#user-id').value
 
-      socket.emit('chat message', message);
-      renderChat('send', message);
-      form.reset();
-    });
-    socket.emit('user connected');
-    socket.on('chat message', function (message) {
-      renderChat('receive', message);
-    });
-    socket.on('user typing', function (message) {
-      if (!document.querySelector('.typing')) {
-        typeIndicator.classList.add('active');
-        setTimeout(function () {
-          typeIndicator.classList.remove('active');
-        }, 2000);
-      } else {
-        typeIndicator.classList.remove('active');
-      }
-    });
-  }
+	const typeIndicator = document.querySelector('.type-indicator')
+	const statusIndicator = document.querySelector('.status-indicator')
 
-  function type() {
-    form.addEventListener('input', function (event) {
-      event.preventDefault();
+	// Join keyed room
+	console.log('CLIENT roomId:', roomId)
+	socket.emit('joined', roomId)
 
-      if (event.inputType.includes('delete')) {
-        return;
-      }
+	socket.on('user online', ({ status }) => {
+		console.log('user online detected!')
+		status === true
+			? statusIndicator.classList.add('active')
+			: statusIndicator.classList.remove('active')
+	}
 
-      if (event.target.value !== '') {
-        socket.emit('user typing');
-      }
-    });
-  }
+	)
 
-  function renderChat(method, message) {
-    var chatWindow = document.querySelector('.chat-window');
-    var newMessage = document.createElement('div');
-    newMessage.classList.add('chat-message');
-    newMessage.classList.add(method);
-    newMessage.innerHTML = "\n\t<p>".concat(message.toString(), "</p>\n\t");
+	// Listen for submit events
+	form.addEventListener('submit', event => {
+		// Prevent refresh when the form is submitted
+		event.preventDefault()
 
-    if (method === 'receive') {
-      typeIndicator.classList.remove('active');
-      typeIndicator.addEventListener('transitionend', function () {
-        chatWindow.appendChild(newMessage);
-        newMessage.classList.add('active');
-      });
-    } else {
-      chatWindow.appendChild(newMessage);
-      newMessage.classList.add('active');
-    }
-  }
+		// Gets the value of the message field, if it's empty don't submit.
+		const message = messageInput.value
+		if (messageInput.value === '') return
 
-  function status() {
-    socket.on('user online', function (status) {
-      return status === true ? statusIndicator.classList.add('active') : statusIndicator.classList.remove('active');
-    });
-  }
-});
+		// Send message to the server
+		socket.emit('new message', { userId, message, roomId })
+
+		// Render the new chat message to the DOM
+		renderChat('sent', message)
+
+		// Clear out the form
+		form.reset()
+	})
+
+	// Handles new incoming messages
+	socket.on('new message', (data) => {
+		// Destructure message from data.message
+		const { message } = data
+
+		// Render chat to the DOM
+		renderChat('received', message)
+	})
+
+	// Send typing events
+	form.addEventListener('input', event => {
+		event.preventDefault()
+
+		// Check if user is deleting text
+		if (event.inputType.includes('delete')) {
+			return
+		}
+
+		// Check if text is empty, send typing event
+		if (event.target.value !== '') {
+			console.log('typing...')
+			socket.emit('user typing')
+		}
+	})
+
+
+
+	// Recieve type events
+	socket.on('user typing', (message) => {
+		console.log('participant is typing')
+
+		if (typeIndicator.classList.contains('active')) {
+
+		} else {
+			typeIndicator.classList.add('active')
+			setTimeout(() => {
+				typeIndicator.classList.remove('active')
+			}, 2000);
+		}
+	})
+
+
+
+	function renderChat(method, message) {
+		const chatWindow = document.querySelector('.chat-window')
+
+		const newMessage = document.createElement('div')
+		newMessage.classList.add('chat-message')
+		newMessage.classList.add(method)
+		newMessage.innerHTML = `<p>${message.toString()}</p>`
+
+		if (method === 'receive') {
+			typeIndicator.classList.remove('active')
+			typeIndicator.addEventListener('transitionend', () => {
+				chatWindow.appendChild(newMessage)
+				newMessage.classList.add('active')
+			})
+		} else {
+			typeIndicator.classList.remove('active')
+			chatWindow.appendChild(newMessage)
+			setTimeout(() => {
+				newMessage.classList.add('active')
+			}, 10)
+
+		}
+
+		setTimeout(() => window.scrollTo(0, document.body.scrollHeight), 200)
+	}
+})
+
+

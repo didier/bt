@@ -1,48 +1,42 @@
-const { connect, get } = require('../db')
-
+const { Read, Update } = require('../db')
 const { ObjectId } = require('mongodb')
-/**
- * @param users - A list of users in the database
- */
-let users = []
 
-get({ name: 'users', query: { 'dob.age': { $lt: 32 } } }, (data) => {
-	users = data
-})
+const getMatches = async (req, res, next) => {
+	const sessionUser = req.session.user
+	// Haal gelikede users op die mij ook geliked hebben
 
-const matches = async (req, res) => {
-	const user = req.session.user
+	const sessionUserId = sessionUser._id
 
-	if (user === undefined) {
-		res.redirect('/')
-		return
+	// die kijkt of mijn userId in hun liked array zit
+	const query = {
+		liked: sessionUserId,
 	}
 
-	const matches = []
-	// let signedInUser
+	// Lijst van mensen die mij geliked hebben
+	const users = await Read({
+		collection: 'users',
+		query,
+	})
 
-	await users
-		.findOne({ 'login.username': user })
-		.then((sessionUser) => {
-			// signedInUser = sessionUser
-			return sessionUser
-		})
-		.then((sessionUser) => {
-			const matches = []
-			console.log(sessionUser.matches)
-			sessionUser.matches.forEach((match) => {
-				users.findOne({ _id: ObjectId(match._id) }).then((user) => {
-					matches.push(user)
-					console.log(user)
-				})
-			})
-		})
-		.then((sessionUser, matches) => {
-			res.status(200).render('matches.hbs', {
-				user: sessionUser,
-				users: matches,
-			})
-		})
+	// Voor alle users die mij geliked hebben, kijk of ik hen ook heb geliked
+	const matches = users.filter((user) => {
+		const usersILike = sessionUser.liked
+
+		// Return een string van het user ID
+		const id = ObjectId(user._id).toString()
+
+		// Returned true als de userId in de usersILike zit.
+		const match = usersILike.includes(id)
+
+		// Plaats item in matches array wanneer het true is
+		return match
+	})
+
+	res.status(200).render('matches', {
+		users: matches,
+		user: sessionUser,
+		title: 'Home',
+	})
 }
 
-module.exports = matches
+module.exports = { getMatches }
